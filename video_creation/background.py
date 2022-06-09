@@ -7,6 +7,7 @@ from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip
 from utils.console import print_step, print_substep
 
+import os
 
 def get_start_and_end_times(video_length, length_of_clip):
 
@@ -14,10 +15,7 @@ def get_start_and_end_times(video_length, length_of_clip):
     return random_time, random_time + video_length
 
 def download_background():
-    """Downloads the background video from youtube.
-
-    Shoutout to: bbswitzer (https://www.youtube.com/watch?v=n_Dv4JMiwK8)
-    """
+    video_url = os.getenv("BACKGROUND_VIDEO_URL")
 
     if not Path("assets/mp4/background.mp4").is_file():
         print_step(
@@ -32,7 +30,7 @@ def download_background():
         }
 
         with YoutubeDL(ydl_opts) as ydl:
-            ydl.download("https://www.youtube.com/watch?v=n_Dv4JMiwK8")
+            ydl.download(video_url)
 
         print_substep("Background video downloaded successfully!", style="bold green")
 

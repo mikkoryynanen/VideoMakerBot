@@ -76,11 +76,11 @@ def make_final_video(number_of_clips):
             .set_opacity(float(opacity)),
             )
     image_concat = concatenate_videoclips(image_clips).set_position(
-        ("center", "center")
+        ("center", H / 3)
     )
     image_concat.audio = audio_composite
     final = CompositeVideoClip([background_clip, image_concat])
-    filename = (re.sub('[?\"%*:|<>]', '', ("assets/" + reddit.subreddit.submission.title + ".mp4")))
+    filename = ("assets/" + reddit.subreddit.submission.title + ".mp4")
     final.write_videofile(filename, fps=30, audio_codec="aac", audio_bitrate="192k")
     for i in range(0, number_of_clips):
         pass
