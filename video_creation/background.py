@@ -18,10 +18,6 @@ def download_background():
     video_url = os.getenv("BACKGROUND_VIDEO_URL")
 
     if not Path("assets/mp4/background.mp4").is_file():
-        print_step(
-            "We need to download the Minecraft background video. This is fairly large but it's only done once."
-        )
-
         print_substep("Downloading the background video... please be patient.")
 
         ydl_opts = {
