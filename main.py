@@ -1,4 +1,5 @@
 # Main
+from utils.cleanup import cleanup_generated_files
 from utils.console import print_markdown
 from utils.console import print_step
 from utils.console import print_substep
@@ -98,3 +99,4 @@ if configured:
     download_background()
     chop_background_video(length)
     final_video = make_final_video(number_of_comments)
+    cleanup_generated_files()
