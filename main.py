@@ -7,6 +7,7 @@ from rich.console import Console
 import time
 from reddit.subreddit import get_subreddit_threads
 from video_creation.background import download_background, chop_background_video
+from video_creation.new_voice import generate_text_mp3
 from video_creation.voices import save_text_to_mp3
 from video_creation.screenshot_downloader import download_screenshots_of_reddit_posts
 from video_creation.final_video import make_final_video
@@ -92,7 +93,9 @@ console.log("[bold green]Enviroment Variables are set! Continuing...")
 
 if configured:
     reddit_object = get_subreddit_threads()
-    length, number_of_comments = save_text_to_mp3(reddit_object)
+    length, number_of_comments = generate_text_mp3(reddit_object)
+    # gTTS implementaion of speech
+    # length, number_of_comments = save_text_to_mp3(reddit_object)
     download_screenshots_of_reddit_posts(
         reddit_object, number_of_comments, os.getenv("THEME", "light")
     )
